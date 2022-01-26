@@ -2,8 +2,6 @@
 
 CAPS System - Code Academy Parcel Service. Uses event driven application principles to simulate a real-world delivery service.
 
-![UML](UML.png)
-
 ## Installation
 
 run: `git clone git@github.com:SpencerTower/caps.git`
