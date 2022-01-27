@@ -1,26 +1,22 @@
 'use strict';
 
 
-// import Events constructor
+// import socket.io
 const socketio = require('socket.io'); // similar to express - have to create a singleton
 
 const PORT = process.env.PORT || 3000;
 
 // singleton
 const server = socketio(PORT);
+const caps = server.of('/caps');
 
-
-const pickup = server.of(PORT + '/messages');
-
-
-pickup.on('connection', (socket) => {
-
-  console.log('Socket connected to messages: ', socket.id);
-});
 
 
 // generates a new socket for each connection
-server.on('connection', (socket) => {
+caps.on('connection', (socket) => {
+
+
+
 
   // sends to inividual socket that connected
   socket.emit('id', {
@@ -34,7 +30,8 @@ server.on('connection', (socket) => {
     console.log('server.on: ', payload);
 
     // sending pickup to all other clients
-    socket.broadcast.emit('pickup', payload);
+    // socket 
+    caps.broadcast.emit('pickup', payload);
     // server.emit('pickup', payload);
   });
 
